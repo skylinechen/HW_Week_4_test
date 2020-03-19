@@ -14,8 +14,7 @@ fi
 read -p "Guessing how may file in this directory: " file_cout
 
 dir=`pwd`
-wc_dir1=`ls -l $dir| wc -l`
-wc_dir=$[ $wc_dir1-1 ]
+wc_dir=`ls -la $dir| grep "^-" | wc -l`
 
 while [[ "$file_cout" -ne "$wc_dir" ]]
 do
