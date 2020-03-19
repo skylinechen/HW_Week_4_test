@@ -4,7 +4,11 @@
 # Author: Allen CT Chen
 
 function guessinggame {
-if [ "$file_cout" -gt "$wc_dir" ];then
+if [[ ! "$file_cout" =~ ^[0-9]+$ ]]
+then
+	echo "$file_cout is not number."
+elif [[ "$file_cout" -gt "$wc_dir" ]]
+then
 	echo "The number $file_cout is too high."
 else
 	echo "The number $file_cout is too low."
