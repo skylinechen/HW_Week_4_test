@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # File: guessinggame.sh
-# Date: March 19, 2020
+# Date: March 20, 2020
 # Author: Allen CT Chen
 
 function guessinggame {
-if [[ ! "$file_cout" =~ ^[0-9]+$ ]]
+if [[ ! "$file_cout" =~ ^[0-9]*$ ]] || [[ "$file_cout" -eq "" ]]
 then
 	echo "$file_cout is not number."
 elif [[ "$file_cout" -gt "$wc_dir" ]]
@@ -16,11 +16,10 @@ fi
 }
 
 read -p "Guessing how may file in this directory: " file_cout
+#dir=`pwd`
+wc_dir=$(ls -la | grep "^-" | wc -l)
 
-dir=`pwd`
-wc_dir=`ls -la $dir| grep "^-" | wc -l`
-
-while [[ "$file_cout" -ne "$wc_dir" ]]
+while [[ ! "$file_cout" =~ ^[0-9]*$ ]] || [[ "$file_cout" -ne "$wc_dir" ]]
 do
 	guessinggame
 	echo "Try to enter again!"
